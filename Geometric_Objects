@@ -1,0 +1,86 @@
+from swampy.World import World
+
+variable = 0
+
+class Point:
+  """Represents a point in 2-D space"""
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+
+  def print_point(self):
+    print('({:f},{:f})'.format(self.x,self.y))
+
+class Rectangle:
+  """Represents a rectangle
+  
+  attributes: width, height, corner"""
+  def __init__(self, height, width):
+    self.height = height
+    self.width = width
+
+    self.corner = Point(0.0, 0.0)
+
+class Canvas(variable):
+  """Represents a Canvas.
+  
+  attributes: width, height, background color"""
+  a_canvas = Canvas()
+  a_canvas.width = 500
+  a_canvas.height = 500
+
+class Circle():
+  """Represents a Circle.
+  
+  attributes: center point, radius  """
+  c = Circle()
+  c.radius = 50
+  c.center = Point()
+  c.center.x = 20
+  c.center.y = 20
+
+def distance_between_points(p1, p2):
+  """Returns the distance between points p1 and p2"""
+  a = p1[0] - p2[0]
+  b = p1[1] - p2[1]
+  c = math.sqrt(p1**2 + p2**2)
+  pass
+
+def move_rectangle(rect, dx, dy):
+  """changes the location of rectangle by adding dx to the x coordinate of rect and dy to the y coordinate of rect"""
+  rect.crnr.x += dx
+  rect.crnr.y += dy
+  pass
+
+def move_rectangle2(rect, dx, dy):
+  """Returns a rectangle with the changed the location of rectangle by adding dx to the x coordinate of rect and dy to the y coordinate of rect"""
+  import copy
+  n_rect = copy.deepcopy(rect)
+  n_rect.crnr.x += dx
+  n_rect.crnr.y += dy
+  return n_rect
+  pass
+
+def draw_rectangle(canvas, rectangle):
+  drawn_canvas = world.ca(canvas.width, canvas.height)
+  drawn_canvas.rectangle(rectangle.bbox, fill=rectangle.color)
+  
+def draw_point(canvas, point):
+  bbox = [point.x, point.y], [point.x, point.y]
+  drawn_canvas = world.ca(canvas.width, canvas.height)
+  drawn_canvas.rectangle(bbox, fill='black')
+
+def draw_circle(canvas, circle):
+  drawn_canvas = world.ca(canvas.width, canvas.height)
+  drawn_canvas.circle([circle.center.x, circle.center.y], circle.radius)
+
+def draw_czech_republic_flag(canvas):
+  drawn_canvas = world.ca(canvas.width, canvas.height)
+  drawn_canvas.rectangle([[-100, 60], [100, 60]], outline=None, fill='white')
+  drawn_canvas.rectangle([[-100, -60], [100, 0]], outline=None, fill='red2')
+  points = [[-100, -60], [-100, 60], [0, 0]]
+  drawn_canvas.polygon(points, fill='blue3')
+
+world = World()
+draw_czech_republic_flag(a_canvas)
+world.mainloop()
